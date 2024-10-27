@@ -1,6 +1,8 @@
 package com.example.parcialds.dto;
 
 import lombok.AllArgsConstructor;
+
+
 import lombok.Setter;
 
 @AllArgsConstructor
@@ -11,4 +13,5 @@ public class ADNResponse {
     public boolean isMutant() {
         return isMutant;
     }
+
 }
