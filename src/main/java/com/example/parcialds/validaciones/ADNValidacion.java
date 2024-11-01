@@ -4,9 +4,9 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 
-public class ADNValidacion implements ConstraintValidator<ADNValida,String[]>{
-
+public class ADNValidacion implements ConstraintValidator<ADNValida, String[]> {
     private static final String VALID_CHARACTERS = "AGTC";
+
 
     @Override
     public void initialize(ADNValida constraintAnnotation) {
@@ -15,39 +15,47 @@ public class ADNValidacion implements ConstraintValidator<ADNValida,String[]>{
     @Override
     public boolean isValid(String[] dna, ConstraintValidatorContext context) {
         if (dna == null) {
-            context.buildConstraintViolationWithTemplate("El ADN no puede ser nulo")
-                    .addConstraintViolation()
-                    .disableDefaultConstraintViolation();
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate("El array no puede ser null").addConstraintViolation();
             return false;
         }
 
-        int size = dna.length;
-        if (size == 0) {
-            context.buildConstraintViolationWithTemplate("El ADN no puede estar vacío")
-                    .addConstraintViolation()
-                    .disableDefaultConstraintViolation();
+        // 2. Verificar si el array está vacío
+        if (dna.length == 0) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate("El array no puede estar vacío").addConstraintViolation();
             return false;
         }
 
-        for (String sequence : dna) {
-            if (sequence == null || sequence.length() != size) {
-                context.buildConstraintViolationWithTemplate("Todas las secuencias de ADN deben tener la misma longitud")
-                        .addConstraintViolation()
-                        .disableDefaultConstraintViolation();
+        int n = dna.length;
+
+        // 3. Verificar si el array es NxM en vez de NxN
+        for (String row : dna) {
+            if (row == null) {
+                context.disableDefaultConstraintViolation();
+                context.buildConstraintViolationWithTemplate("El array no puede contener filas null").addConstraintViolation();
                 return false;
             }
-            for (char c : sequence.toCharArray()) {
-                if (VALID_CHARACTERS.indexOf(c) == -1) {
-                    context.buildConstraintViolationWithTemplate("El ADN solo puede contener los caracteres A, G, T, C")
-                            .addConstraintViolation()
-                            .disableDefaultConstraintViolation();
+
+            if (row.length() != n) {
+                context.disableDefaultConstraintViolation();
+                context.buildConstraintViolationWithTemplate("El array debe ser NxN, pero se encontró una fila de tamaño incorrecto").addConstraintViolation();
+                return false;
+            }
+        }
+
+        // 4. Verificar si contiene caracteres inválidos (números o letras no válidas)
+        for (String row : dna) {
+            for (char c : row.toCharArray()) {
+                if (!VALID_CHARACTERS.contains(Character.toString(c))) {
+                    context.disableDefaultConstraintViolation();
+                    context.buildConstraintViolationWithTemplate("El array contiene caracteres inválidos. Solo se permiten: " + VALID_CHARACTERS).addConstraintViolation();
                     return false;
                 }
             }
         }
 
+        // Si pasa todas las validaciones, es válido
         return true;
     }
-
-
 }

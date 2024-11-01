@@ -18,7 +18,7 @@ public class ParcialDsApplication {
     public CommandLineRunner commandLineRunner(ADNService ADNService) {
         return args -> {
             // Ejemplo de secuencia de ADN
-            String[] dnaArray = {"AAAC", "CCGA", "TTAA", "AGAA"};
+            String[] dnaArray = {"AAAA", "CCGA", "TTAA", "AGAA"};
             String[] dnaArray2 = {"AAAAA", "CAGAA", "TTAAA", "AGAAA"};
 
             // Verificar si la secuencia de ADN es mutante
