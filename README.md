@@ -58,9 +58,9 @@ json
   "dna": ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]
 }
 Envía la solicitud y verifica la respuesta.
- Ejemplos de Secuencias de ADN
-Mutante
-json
+## Ejemplos de Secuencias de ADN
+- Mutante
+
 
 {
     "dna": [
@@ -72,8 +72,9 @@ json
       "TCACTG"
     ]
 }
-No Mutante
-json
+- No Mutante
+
+
 
 {
     "dna": [
@@ -85,7 +86,8 @@ json
       "AGGCAA"
     ]
 }
-🧩 Pruebas Unitarias
+
+## Pruebas Unitarias
 El proyecto incluye pruebas unitarias para verificar el funcionamiento del algoritmo en todos los patrones posibles (filas, columnas y diagonales). Estas pruebas están diseñadas para asegurar que el sistema detecta correctamente los patrones mutantes.
 
 🎉 ¡Listo para detectar mutantes y ayudar a Magneto en su misión!
