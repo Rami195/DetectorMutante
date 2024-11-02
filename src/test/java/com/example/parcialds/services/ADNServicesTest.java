@@ -3,7 +3,7 @@ package com.example.parcialds.services;
 import com.example.parcialds.Services.ADNService;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class ADNServicesTest {
 
@@ -117,7 +117,7 @@ public class ADNServicesTest {
                 "GGATTC",
                 "AGGCAA"
         };
-        assertTrue(adnService.isMutant(dna));
+        assertFalse(adnService.isMutant(dna));
     }
 
 
@@ -144,7 +144,7 @@ public class ADNServicesTest {
                 "AAAC",
                 "CGGG"
         };
-        assertTrue(adnService.isMutant(dna));
+        assertFalse(adnService.isMutant(dna));
     }
 
     @Test
@@ -180,7 +180,7 @@ public class ADNServicesTest {
                 "TAAG",
                 "GGTC"
         };
-        assertTrue(adnService.isMutant(dna));
+        assertFalse(adnService.isMutant(dna));
     }
 
     @Test

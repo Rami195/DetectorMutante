@@ -21,12 +21,11 @@ public class ADNService {
 
 
 
-        // Verificar horizontal, vertical y diagonal usando métodos separados
         sequenceCount += checkAllHorizontal(dna, size);
         sequenceCount += checkAllVertical(dna, size);
         sequenceCount += checkAllDiagonals(dna, size);
 
-        // Es mutante si encuentra más de una secuencia
+
         return sequenceCount > 1;
     }
 
@@ -49,30 +48,47 @@ public class ADNService {
     }
 
     private int checkAllDiagonals(String[] dna, int size) {
+        int count = 0;
 
-        // Diagonales de izquierda a derecha
-        int leftToRightDiagonals = IntStream.range(0, size)
-                .map(i -> {
-                    StringBuilder diagonal = new StringBuilder();
-                    IntStream.range(0, i + 1)
-                            .filter(j -> i - j < size)
-                            .forEach(j -> diagonal.append(dna[i - j].charAt(j)));
-                    return checkSequence(diagonal.toString());
-                })
-                .sum();
 
-        // Diagonales de derecha a izquierda
-        int rightToLeftDiagonals = IntStream.range(0, size)
-                .map(i -> {
-                    StringBuilder diagonal = new StringBuilder();
-                    IntStream.range(0, i + 1)
-                            .filter(j -> i - j < size)
-                            .forEach(j -> diagonal.append(dna[i - j].charAt(size - 1 - j)));
-                    return checkSequence(diagonal.toString());
-                })
-                .sum();
+        for (int start = 0; start < size; start++) {
 
-        return leftToRightDiagonals + rightToLeftDiagonals;
+            StringBuilder diagonal1 = new StringBuilder();
+            for (int i = 0; i + start < size; i++) {
+                diagonal1.append(dna[i].charAt(i + start));
+            }
+            count += checkSequence(diagonal1.toString());
+
+
+            if (start > 0) {
+                StringBuilder diagonal2 = new StringBuilder();
+                for (int i = 0; i + start < size; i++) {
+                    diagonal2.append(dna[i + start].charAt(i));
+                }
+                count += checkSequence(diagonal2.toString());
+            }
+        }
+
+
+        for (int start = 0; start < size; start++) {
+
+            StringBuilder diagonal3 = new StringBuilder();
+            for (int i = 0; i + start < size; i++) {
+                diagonal3.append(dna[i].charAt(size - 1 - i - start));
+            }
+            count += checkSequence(diagonal3.toString());
+
+
+            if (start > 0) {
+                StringBuilder diagonal4 = new StringBuilder();
+                for (int i = 0; i + start < size; i++) {
+                    diagonal4.append(dna[i + start].charAt(size - 1 - i));
+                }
+                count += checkSequence(diagonal4.toString());
+            }
+        }
+
+        return count;
     }
 
     private int checkSequence(String sequence) {
@@ -80,13 +96,13 @@ public class ADNService {
         char currentChar = sequence.charAt(0);
         int currentStreak = 1;
 
-        // Contar secuencias de 4 caracteres iguales
+
         for (int i = 1; i < sequence.length(); i++) {
             if (sequence.charAt(i) == currentChar) {
                 currentStreak++;
                 if (currentStreak == 4) {
                     count++;
-                    currentStreak = 0; // Reiniciar para contar otras secuencias
+                    currentStreak = 0;
                 }
             } else {
                 currentChar = sequence.charAt(i);
@@ -100,12 +116,12 @@ public class ADNService {
     public ADN saveDna(String[] dna, boolean isMutant) {
         String dnaAsString = Arrays.toString(dna);
 
-        // Verificar si ya existe un registro con este ADN
+
         Optional<ADN> existingDna = ADNRepository.findByDna(dnaAsString);
 
-        // Si ya existe, no guardar de nuevo
+
         if (existingDna.isPresent()) {
-            return existingDna.get();  // Retorna el registro existente
+            return existingDna.get();
         }
 
         ADN ADNEntity = new ADN();
