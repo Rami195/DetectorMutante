@@ -72,13 +72,14 @@ Envía la solicitud y verifica la respuesta.
       "TCACTG"
     ]
 }
+![aaa](https://github.com/user-attachments/assets/dc2f2d54-1bf4-4204-81d4-41483e3aa905)
 - No Mutante
 
 
 
 {
     "dna": [
-      "ATGGTG",
+      "ATGATG",
       "GTCTTA",
       "AATTGG",
       "ACTAGT",
@@ -86,6 +87,7 @@ Envía la solicitud y verifica la respuesta.
       "AGGCAA"
     ]
 }
+![bbbb](https://github.com/user-attachments/assets/8e0317b6-67bb-4882-9fdf-d53bcf583a46)
 
 ## Pruebas Unitarias
 El proyecto incluye pruebas unitarias para verificar el funcionamiento del algoritmo en todos los patrones posibles (filas, columnas y diagonales). Estas pruebas están diseñadas para asegurar que el sistema detecta correctamente los patrones mutantes.
