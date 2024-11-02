@@ -1,31 +1,35 @@
- Mutant Detector API
-¡Bienvenido al proyecto Mutant Detector! Esta aplicación es una API REST que analiza secuencias de ADN para determinar si un humano es mutante. 💻🔬
+# 🧬 Mutant Detector API
 
- Funcionalidad
-La API recibe una secuencia de ADN en formato JSON a través de una solicitud HTTP POST. Utiliza un algoritmo de análisis para detectar patrones mutantes en la secuencia y responde si corresponde a un mutante. Además, puedes obtener estadísticas sobre el número de secuencias analizadas mediante una solicitud HTTP GET.
+¡Bienvenido al proyecto **Mutant Detector**! Esta aplicación es una API REST que analiza secuencias de ADN para determinar si un humano es mutante. 💻🔬
 
- Tecnologías Utilizadas
-Java + Spring Boot: Para la lógica de negocio y manejo de solicitudes HTTP.
-H2 Database: Base de datos en memoria para almacenar temporalmente las secuencias de ADN y estadísticas.
-Postman: Para probar los endpoints de la API.
-Maven o Gradle: Herramienta de construcción y manejo de dependencias.
-IntelliJ IDEA: Entorno de desarrollo integrado (IDE).
-🔗 Link de Despliegue
-La API está desplegada en Render y puede ser accedida en: [https://mutantdetector.onrender.com](https://detectormutante.onrender.com)
+## 📜 Funcionalidad
 
-🌐 Endpoints de la API
-POST /mutant
+La API recibe una secuencia de ADN en formato JSON a través de una solicitud HTTP `POST`. Utiliza un algoritmo de análisis para detectar patrones mutantes en la secuencia y responde si corresponde a un mutante. Además, puedes obtener estadísticas sobre el número de secuencias analizadas mediante una solicitud HTTP `GET`.
+
+## 🚀 Tecnologías Utilizadas
+
+- **Java + Spring Boot**: Para la lógica de negocio y manejo de solicitudes HTTP.
+- **H2 Database**: Base de datos en memoria para almacenar temporalmente las secuencias de ADN y estadísticas.
+- **Postman**: Para probar los endpoints de la API.
+- **Maven o Gradle**: Herramienta de construcción y manejo de dependencias.
+- **IntelliJ IDEA**: Entorno de desarrollo integrado (IDE).
+
+## 🔗 Link de Despliegue
+
+La API está desplegada en Render y puede ser accedida en:
+[[https://mutantdetector.onrender.com](https://mutantdetector.onrender.com)](https://detectormutante.onrender.com)
+
+## 🌐 Endpoints de la API
+
+### `POST /mutant`
 Envía una secuencia de ADN en formato JSON para verificar si corresponde a un mutante.
 
-Request:
-
-json
-Copiar código
-{
-  "dna": ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]
-}
+- **Request**:
+  ```json
+  {
+    "dna": ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]
+  }
 Response:
-
 200 OK: Si es un mutante.
 403 Forbidden: Si no es un mutante.
 GET /stats
@@ -50,7 +54,7 @@ Copiar código
   "dna": ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]
 }
 Envía la solicitud y verifica la respuesta.
- Ejemplos de Secuencias de ADN
+🧬 Ejemplos de Secuencias de ADN
 Mutante
 json
 Copiar código
@@ -80,4 +84,4 @@ Copiar código
 🧩 Pruebas Unitarias
 El proyecto incluye pruebas unitarias para verificar el funcionamiento del algoritmo en todos los patrones posibles (filas, columnas y diagonales). Estas pruebas están diseñadas para asegurar que el sistema detecta correctamente los patrones mutantes.
 
-¡Listo para detectar mutantes y ayudar a Magneto en su misión! 🎉
+🎉 ¡Listo para detectar mutantes y ayudar a Magneto en su misión!
